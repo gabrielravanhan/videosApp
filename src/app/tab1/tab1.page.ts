@@ -1,7 +1,10 @@
+import { ExterminadorFuturoPage } from './../filmes/exterminador-futuro/exterminador-futuro.page';
 import { IFilme } from '../models/IFilme.model';
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { DadosService } from '../services/dados.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -19,7 +22,8 @@ export class Tab1Page {
       duracao: '1h 47m',
       classificacao: 76,
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fo4SSoNT1ASI4JP7dOLrosWNWKa.jpg',
-      generos: ['Ação', 'Thriller', 'Ficção científica']
+      generos: ['Ação', 'Thriller', 'Ficção científica'],
+      pagina: '/exterminador-futuro'
     },
 
     {
@@ -28,7 +32,8 @@ export class Tab1Page {
       duracao: '1h 34m',
       classificacao: 74,
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6ocBqNSqG1hWbzjv2sZxLc07nLs.jpg',
-      generos: ['Ação', 'Aventura', 'Thriller', 'Guerra']
+      generos: ['Ação', 'Aventura', 'Thriller', 'Guerra'],
+      pagina: '/rambo'
     },
 
     {
@@ -37,11 +42,21 @@ export class Tab1Page {
       duracao: '1h 37m',
       classificacao: 68,
       cartaz: 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/e50XYhyoaJpJUNn18Fs4FsZgtfx.jpg',
-      generos: ['Ação', 'Thriller']
+      generos: ['Ação', 'Thriller'],
+      pagina: '/kickboxer'
     },
   ];
 
-  constructor(public alertController: AlertController, public toastController: ToastController) { }
+  constructor(
+    public alertController: AlertController,
+    public toastController: ToastController,
+    public dadosService: DadosService,
+    public route: Router) { }
+
+  exibirFilme(filme: IFilme) {
+    this.dadosService.guardarDados('filme', filme);
+    this.route.navigateByUrl('/dados-filme');
+  }
 
   async exibirAlertaFavorito() {
     const alert = await this.alertController.create({
