@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { KickboxerPageRoutingModule } from './kickboxer-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { KickboxerPage } from './kickboxer.page';
+import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    KickboxerPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [KickboxerPage]
+  declarations: [LoginPage]
 })
-export class KickboxerPageModule {}
+export class LoginPageModule {}
