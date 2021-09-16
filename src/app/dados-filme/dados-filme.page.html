@@ -9,14 +9,15 @@
 
 <ion-content color="light">
   <ion-card *ngIf='filme'>
-    <ion-card-header>
+    <ion-card-header class="ion-text-center">
       <img *ngIf="filme.poster_path" src="https://www.themoviedb.org/t/p/w500/{{filme.poster_path}}">
       <ion-icon *ngIf="!filme.poster_path" name="videocam-off"></ion-icon>
     </ion-card-header>
 
     <ion-card-content>
       <h1>{{ filme.title }} -
-        <ion-chip color="success">{{ filme.vote_average }}%</ion-chip>
+        <ion-chip [color]="filme.vote_average < 5 ? 'danger' : ((filme.vote_average < 7) ? 'warning' : 'success')"
+          outline>{{ filme.vote_average }}</ion-chip>
       </h1>
       <p>{{ filme.release_date | date:'shortDate'}}</p>
     </ion-card-content>
